@@ -1,0 +1,116 @@
+.app {
+    display: grid;
+    padding: 20px;
+}
+
+.list-products {    
+    border: 1px solid #DBA8E0;
+}
+
+.item-list-header, .item-list {
+    display: grid;
+    grid-template-columns: 5fr 50fr 15fr 20fr 10fr;
+}
+
+.item-list-no-results {
+    display: grid;
+    padding: 20px;
+    font-size: 14px;
+    text-align: center;
+    grid-template-columns: 100fr;    
+}
+
+.item-list-header {
+    background-color: #3f467f;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.item-list {
+    padding: 5px;
+}
+
+.item-list:nth-child(even) {
+    background-color: #F0F0F0;
+}
+
+.item-list:hover {
+    background-color: #d4f9df;
+}
+
+.item-action .btn-item-action {
+    display: block;
+    float: left;
+    font-size: 14px;
+    margin: 0 10px 0 0;
+    padding: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.item-action .btn-item-action:hover {
+    background-color: rgba(200, 200, 200, .7);
+}
+
+.item-action .btnEdit:after {
+    content: "✏️";
+}
+
+.item-action .btnDelete:after {
+    content: "❌";
+}
+
+/* ADD NEW PRODUCT LAYER */
+.container-product-new-edit {
+    margin: 20px auto;
+    max-width: 270px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #F0F0F0;
+    border: 1px solid #A0A0A0;
+}
+
+.container-product-new-edit label,
+.container-product-new-edit input {
+    width: 250px;
+    margin-bottom: 10px;
+}
+
+.container-product-new-edit .action-container {
+    margin: 0 5px 15px 0;
+    height: 18px;
+}
+
+.container-product-new-edit .action-container .btn{
+    float: right;
+    font-size: 18px;
+    margin: 0 0 0 5px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container-product-new-edit .action-container .btn:hover {
+    background-color: rgba(200, 200, 200, .7);
+}
+
+.container-product-new-edit .action-container .btnSave:after{
+    content: "✔️";
+}
+
+.container-product-new-edit .action-container .btnCancel:after{
+    content: "❌";    
+}
+
+.message-container {
+    padding: 10px;
+    font-size: 14px;
+    color: #0aad1a;
+    text-align: center;
+}
+
+..message-container.error {
+    color: #FF3300;
+}

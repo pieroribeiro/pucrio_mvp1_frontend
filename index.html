@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos</title>
+    <script src="assets/scripts/utils.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="menu">
+            <div class="btn"></div>
+            <ul>
+                <li>Produtos</li>
+            </ul>
+        </aside>
+        <section class="header">
+            <h1>Lista de Produtos</h1>
+        </section>
+        <section class="main">
+            <div class="filters">
+
+            </div>
+            <div class="container-product-new-edit">
+                <h3>Adicionar Novo</h3>
+                <input type="hidden" id="formProductAction" value="add">
+                <label for="name">ID: </label><input type="text" id="productId" disabled value="">
+                <label for="name">Nome: </label><input type="text" id="productName" class="field" value="">
+                <label for="value">Valor: </label><input type="number" id="productValue" class="field" value="">
+                <div class="action-container">
+                    <div class="btn btnSave"></div>
+                    <div class="btn btnCancel"></div>
+                </div>
+            </div>
+            <div class="message-container dn"></div>
+            <div class="list-products"></div>
+        </section>
+        <section class="footer">
+            <p>Piero Ribeiro&reg; - Todos os direitos reservados</p>
+        </section>
+    </div>
+    <script src="assets/scripts/main.js"></script>
+</body>
+</html>

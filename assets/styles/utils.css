@@ -1,0 +1,13 @@
+.field {
+    border-radius: 5px;
+    padding: 3px;
+    border: 1px dotted #A0A0A0;
+}
+
+.dn {
+    display: none;
+}
+
+.box {
+    display: block;
+}
