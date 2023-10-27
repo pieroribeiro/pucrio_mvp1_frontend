@@ -111,6 +111,6 @@
     text-align: center;
 }
 
-..message-container.error {
+.message-container.error {
     color: #FF3300;
 }
