@@ -1,5 +1,9 @@
 .header {
     padding: 10px;
+    height: 180px;
+    font-size: 24px;
+    color: #fff;
     border: 1px solid #DBA8E0;
     text-align: center;
+    background: url("../images/bg-header.jpg") no-repeat center top;
 }
