@@ -95,9 +95,9 @@ window.onload = (e) => {
     }
 
     const fillListProducts = (records = []) => {
-        document.querySelectorAll(".list-products .item-list").forEach(item => {
-            item.remove()
-        })
+        for (let i = 0; i < document.querySelectorAll(".list-products .item-list").length; i++) {
+            document.querySelectorAll(".list-products .item-list")[i].remove()
+        }
 
         const container = document.getElementsByClassName("list-products")[0]
 
@@ -123,28 +123,32 @@ window.onload = (e) => {
                 `))
             })
 
-            document.querySelectorAll(".btn-item-action.btnDelete").forEach(item => {
-                item.addEventListener("click", (e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    const id = e.target.dataset.id
-                    if (id) {
-                        deleteProduct(id)
-                    }
-                })
-            })
-
-            document.querySelectorAll(".btn-item-action.btnEdit").forEach(item => {
-                item.addEventListener("click", (e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    const id = e.target.dataset.id
-                    if (id) {
-                        editProduct(id)
-                    }
-                })
-            })
+            listEventListeners()
         }
+    }
+
+    const listEventListeners = () => {
+        document.querySelectorAll(".list-products .btn-item-action.btnDelete").forEach(item => {
+            item.addEventListener("click", (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                const id = e.target.dataset.id
+                if (id) {
+                    deleteProduct(id)
+                }
+            })
+        })
+
+        document.querySelectorAll(".list-products .btn-item-action.btnEdit").forEach(item => {
+            item.addEventListener("click", (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                const id = e.target.dataset.id
+                if (id) {
+                    editProduct(id)
+                }
+            })
+        })
     }
 
     const updateProductList = async () => {

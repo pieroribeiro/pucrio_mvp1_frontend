@@ -1,6 +1,6 @@
 .menu {
     position: absolute;
-    left: -270px;
+    left: -240px;
     top: 0;
     z-index: 1;
     width: 250px;
@@ -21,9 +21,15 @@
     position: absolute;
     right: 0;
     top: 0;
-    background-color: #F0F0F0;
+    background-color: rgba(0,0,0,.1);
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.menu .btn:hover {
+    background-color: rgba(0,0,0,.2);
 }
 
 .menu .btn:after {
