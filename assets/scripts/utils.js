@@ -39,4 +39,13 @@ function formatCurrency (value) {
         })
     ).format(value)
 }
-  
+
+function removeClassFromSiblings (el, className) {
+    el.previousSibling.forEach(item => {
+        item.classList.remove(className)
+    })
+
+    el.nextSibling.forEach(item => {
+        item.classList.remove(className)
+    })
+}

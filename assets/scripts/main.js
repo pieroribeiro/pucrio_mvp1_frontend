@@ -69,6 +69,17 @@ window.onload = (e) => {
         })
     }
 
+    const menuItemsEvent = () => {
+        const item = document.querySelector(".menu ul li")
+        item.addEventListener("click", (e) => {
+            e.stopPropagation()
+            e.preventDefault()
+            item.classList.add("active")
+
+            removeClassFromSiblings(this.target, 'active')
+        })
+    }
+
     const editProduct = async (id) => {
         const res = await fetchAPI(`${API_ENDPOINT_GET_PRODUCT}${id}`, 'GET')
         if (res.id) {
@@ -223,6 +234,7 @@ window.onload = (e) => {
         `))
 
         menuBtnEvent()
+        menuItemsEvent()
         await updateProductList()
 
         addEditListeners()
