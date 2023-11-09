@@ -49,6 +49,7 @@
 
 .menu ul li {
     padding: 5px;
+    cursor: pointer;
 }
 
 .menu ul li:before {

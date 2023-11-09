@@ -70,13 +70,16 @@ window.onload = (e) => {
     }
 
     const menuItemsEvent = () => {
-        const item = document.querySelector(".menu ul li")
-        item.addEventListener("click", (e) => {
-            e.stopPropagation()
-            e.preventDefault()
-            item.classList.add("active")
-
-            removeClassFromSiblings(this.target, 'active')
+        document.querySelectorAll(".menu ul li").forEach(item => {
+            item.addEventListener("click", (e) => {
+                e.stopPropagation()
+                e.preventDefault()
+    
+                const currItem = e.target
+                currItem.classList.add("active")
+    
+                removeClassFromSiblings(currItem, 'active')
+            })
         })
     }
 
@@ -96,18 +99,18 @@ window.onload = (e) => {
     const deleteProduct = async (id) => {
         if ( confirm(`Dejesa realmente deletar o item ${id}?`) ) {
             const res = await fetchAPI(`${API_ENDPOINT_DELETE_PRODUCT}${id}`, 'DELETE')
-            // if (res && res.message) {
+            if (res && res.message) {
                 showMessage(res.message)
-                updateProductList()
-            // } else {
-
-            // }
+                await updateProductList()
+            } else {
+                showMessage("Ocorreu um erro, tente novamente mais tarde!")
+            }
         }
     }
 
     const fillListProducts = (records = []) => {
-        for (let i = 0; i < document.querySelectorAll(".list-products .item-list").length; i++) {
-            document.querySelectorAll(".list-products .item-list")[i].remove()
+        while (document.querySelector(".list-products .item-list")) {
+            document.querySelector(".list-products .item-list").remove()
         }
 
         const container = document.getElementsByClassName("list-products")[0]
@@ -212,7 +215,7 @@ window.onload = (e) => {
                 showMessage(results.message, true)
             }
 
-            updateProductList()
+            await updateProductList()
             resetFormAddEdit()
         })
 

@@ -41,11 +41,21 @@ function formatCurrency (value) {
 }
 
 function removeClassFromSiblings (el, className) {
-    el.previousSibling.forEach(item => {
-        item.classList.remove(className)
-    })
+    const siblings = []
+    let = previousSibling = el.previousElementSibling
+    let = nextSibling = el.nextElementSibling
 
-    el.nextSibling.forEach(item => {
+    while (previousSibling) {
+        siblings.push(previousSibling)
+        previousSibling = previousSibling.previousElementSibling
+    }
+
+    while (nextSibling) {
+        siblings.push(nextSibling)
+        nextSibling = nextSibling.nextElementSibling
+    }
+
+    siblings.forEach(item => {
         item.classList.remove(className)
     })
 }
