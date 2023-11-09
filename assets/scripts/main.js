@@ -69,6 +69,23 @@ window.onload = (e) => {
         })
     }
 
+    const selectAreaToShow = (menuSelected) => {
+        switch(menuSelected) {
+            case "products":
+                setTitle("Listagem de Produtos")
+                break
+            case "sales":
+                setTitle("Vendas")
+                break
+        }
+
+    }
+
+    const setTitle = (title) => {
+        document.querySelector(".header h1").innerHTML = title
+        document.title = title        
+    }
+
     const menuItemsEvent = () => {
         document.querySelectorAll(".menu ul li").forEach(item => {
             item.addEventListener("click", (e) => {
@@ -77,10 +94,18 @@ window.onload = (e) => {
     
                 const currItem = e.target
                 currItem.classList.add("active")
+
+                selectAreaToShow(currItem.dataset.item)
     
                 removeClassFromSiblings(currItem, 'active')
+
+                document.querySelector(".menu .btn").dispatchEvent(new Event("click"))
             })
         })
+    }
+
+    const activateFirstMenuItem = () => {
+        document.querySelector(".menu ul li[data-item='products']").dispatchEvent(new Event("click"))
     }
 
     const editProduct = async (id) => {
@@ -238,6 +263,8 @@ window.onload = (e) => {
 
         menuBtnEvent()
         menuItemsEvent()
+        activateFirstMenuItem()
+
         await updateProductList()
 
         addEditListeners()
