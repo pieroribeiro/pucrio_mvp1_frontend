@@ -39,4 +39,23 @@ function formatCurrency (value) {
         })
     ).format(value)
 }
-  
+
+function removeClassFromSiblings (el, className) {
+    const siblings = []
+    let = previousSibling = el.previousElementSibling
+    let = nextSibling = el.nextElementSibling
+
+    while (previousSibling) {
+        siblings.push(previousSibling)
+        previousSibling = previousSibling.previousElementSibling
+    }
+
+    while (nextSibling) {
+        siblings.push(nextSibling)
+        nextSibling = nextSibling.nextElementSibling
+    }
+
+    siblings.forEach(item => {
+        item.classList.remove(className)
+    })
+}

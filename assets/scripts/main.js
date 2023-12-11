@@ -1,5 +1,5 @@
 const API_DOMAIN = "http://localhost:5000"
-const API_ENDPOINT_GET_PRODUCT = `${API_DOMAIN}/product/?id=`
+const API_ENDPOINT_GET_PRODUCT = `${API_DOMAIN}/product/`
 const API_ENDPOINT_LIST_PRODUCTS = `${API_DOMAIN}/products/`
 const API_ENDPOINT_CREATE_PRODUCT = `${API_DOMAIN}/product/`
 const API_ENDPOINT_UPDATE_PRODUCT = API_ENDPOINT_GET_PRODUCT
@@ -69,6 +69,45 @@ window.onload = (e) => {
         })
     }
 
+    const selectAreaToShow = (menuSelected) => {
+        switch(menuSelected) {
+            case "products":
+                setTitle("Listagem de Produtos")
+                break
+            case "sales":
+                setTitle("Vendas")
+                break
+        }
+
+    }
+
+    const setTitle = (title) => {
+        document.querySelector(".header h1").innerHTML = title
+        document.title = title        
+    }
+
+    const menuItemsEvent = () => {
+        document.querySelectorAll(".menu ul li").forEach(item => {
+            item.addEventListener("click", (e) => {
+                e.stopPropagation()
+                e.preventDefault()
+    
+                const currItem = e.target
+                currItem.classList.add("active")
+
+                selectAreaToShow(currItem.dataset.item)
+    
+                removeClassFromSiblings(currItem, 'active')
+
+                document.querySelector(".menu .btn").dispatchEvent(new Event("click"))
+            })
+        })
+    }
+
+    const activateFirstMenuItem = () => {
+        document.querySelector(".menu ul li[data-item='products']").dispatchEvent(new Event("click"))
+    }
+
     const editProduct = async (id) => {
         const res = await fetchAPI(`${API_ENDPOINT_GET_PRODUCT}${id}`, 'GET')
         if (res.id) {
@@ -85,18 +124,18 @@ window.onload = (e) => {
     const deleteProduct = async (id) => {
         if ( confirm(`Dejesa realmente deletar o item ${id}?`) ) {
             const res = await fetchAPI(`${API_ENDPOINT_DELETE_PRODUCT}${id}`, 'DELETE')
-            // if (res && res.message) {
+            if (res && res.message) {
                 showMessage(res.message)
-                updateProductList()
-            // } else {
-
-            // }
+                await updateProductList()
+            } else {
+                showMessage("Ocorreu um erro, tente novamente mais tarde!")
+            }
         }
     }
 
     const fillListProducts = (records = []) => {
-        for (let i = 0; i < document.querySelectorAll(".list-products .item-list").length; i++) {
-            document.querySelectorAll(".list-products .item-list")[i].remove()
+        while (document.querySelector(".list-products .item-list")) {
+            document.querySelector(".list-products .item-list").remove()
         }
 
         const container = document.getElementsByClassName("list-products")[0]
@@ -201,7 +240,7 @@ window.onload = (e) => {
                 showMessage(results.message, true)
             }
 
-            updateProductList()
+            await updateProductList()
             resetFormAddEdit()
         })
 
@@ -223,6 +262,9 @@ window.onload = (e) => {
         `))
 
         menuBtnEvent()
+        menuItemsEvent()
+        activateFirstMenuItem()
+
         await updateProductList()
 
         addEditListeners()
